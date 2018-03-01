@@ -1,0 +1,17 @@
+@CHARSET "ISO-8859-1";
+body{
+	
+	font-family:Arial, Helvetica, Geneva, sans-serif;
+	font-size:15px;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.error{
+	
+	color:red;
+}
+
+.success{
+	color:green;
+}
