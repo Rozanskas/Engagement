@@ -15,7 +15,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "com.mindaugas.engagementapp")
-public class DemoAppConfig implements WebMvcConfigurer {
+public class ServletConfig implements WebMvcConfigurer {
 
 	@Override
 	   public void addResourceHandlers(ResourceHandlerRegistry registry) {
