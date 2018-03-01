@@ -61,10 +61,12 @@ public class SkillSetDaoImpl extends BaseDao implements SkillSetDao {
 	}
 
 	@Override
-	public List<User> findStudentByProperty(String propName, Object propValue) {
-		String sql = "SELECT user_id ,name, email,role,loginStatus "
-				+"FROM user WHERE {SELECT student_id FROM skill_set WHERE "+propName+"=?}";
-		return getJdbcTemplate().query(sql, new UserRowMapper(),propValue);
+	public List<SkillSet> findSkillSetByProperty(String txt) {
+		String sql = "SELECT skill_set_id, student_id, university, course, personal_projects, grades, extra "
+				+ "FROM skill_set WHERE  (university LIKE '%" + txt + "%' OR course LIKE '%" + txt + "%'"
+				+ " OR personal_projects LIKE '%" + txt + "%' OR grades LIKE '%" + txt + "%'" + "OR extra LIKE '%" + txt
+				+ "%')";
+		return getJdbcTemplate().query(sql, new SkillSetRowMapper());
 	}
 	@Override
 	public SkillSet findById(int skillSetId) {

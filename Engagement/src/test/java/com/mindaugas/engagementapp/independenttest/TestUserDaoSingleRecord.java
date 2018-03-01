@@ -1,4 +1,4 @@
-package com.luv2code.springsecurity.demo;
+package com.mindaugas.engagementapp.independenttest;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -16,8 +16,7 @@ public class TestUserDaoSingleRecord {
 		System.out.println();
 		System.out.println(user.getUser_id());
 		System.out.println(user.getName());
-		System.out.println(user.getAddress());
-		System.out.println(user.getLoginName());
+	
 
 	}
 

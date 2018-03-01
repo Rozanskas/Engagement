@@ -41,6 +41,11 @@ public class SkillSetServiceImpl implements SkillSetService {
 		
 		skillSetDao.delete(skillSetId);
 	}
+
+	@Override
+	public List<SkillSet> findSkillSetByProperty(String txt) {
+		return skillSetDao.findSkillSetByProperty(txt);
+	}
 	
 
 }

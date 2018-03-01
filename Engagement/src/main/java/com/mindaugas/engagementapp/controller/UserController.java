@@ -1,5 +1,6 @@
 package com.mindaugas.engagementapp.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -168,4 +169,17 @@ public class UserController {
 
 	}
 
+	@RequestMapping(value="/employer/student_search")
+	public String studentSearch(Model model,HttpSession session,@RequestParam("freeText")String freeText){
+		
+		List<SkillSet> skillSetList = skillSetService.findSkillSetByProperty(freeText);
+		List<User> studentList = new ArrayList<>() ;
+		 for(SkillSet skill : skillSetList){
+			 User tempStudent = userService.findById(skill.getStudentId());
+			 tempStudent.setSkillSet(skill);
+			 studentList.add(tempStudent);
+		 }
+		model.addAttribute("studentList", studentList);
+		return "student_list";
+	}
 }

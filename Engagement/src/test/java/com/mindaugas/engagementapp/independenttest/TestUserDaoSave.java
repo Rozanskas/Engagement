@@ -1,4 +1,4 @@
-package com.luv2code.springsecurity.demo;
+package com.mindaugas.engagementapp.independenttest;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -14,10 +14,7 @@ public class TestUserDaoSave {
 		UserDao userDao = ctx.getBean(UserDao.class);
 		User user = new User();
 		user.setName("Minde");
-		user.setPhone("444444");
 		user.setEmail("rozaemail");
-		user.setAddress("adresss");
-		user.setLoginName("adas");
 		user.setPassword("nonencrypt");
 		user.setRole(1);
 		user.setLoginStatus(1);

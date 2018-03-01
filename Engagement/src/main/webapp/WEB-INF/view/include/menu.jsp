@@ -14,7 +14,7 @@
 <s:url var="url_student_skill" value="/student/skill_set"/>
 
 <c:if test="${sessionScope.userId==null}">
-<a href="${url_index}" >Home</a> <a href="" >Login</a> <a href="${url_reg}" >Register</a> <a href="" >About</a>
+<a href="${url_index}" >Home</a> <a href="${url_index}" >Login</a> <a href="${url_reg}" >Register</a> <a href="" >About</a>
 </c:if>
 <c:if test="${sessionScope.userId!=null && sessionScope.role== 1}">
 <a href="${url_emp_home}" > Home </a> <a href="" >Update profile </a> <a href="${url_students}" >Search Candidates </a><a href="" > Engaging candidates </a>  <a href="${url_logout}" >Log Out</a> <a href="" > Messages </a>

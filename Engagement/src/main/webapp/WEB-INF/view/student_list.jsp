@@ -38,10 +38,11 @@
 				<h3>Search students</h3>
 				<table width="100%">
 					<tr>
-						<td align="right">
-							<form action="<spring:url value="/user/contact_search"/>">
+						<td align="left">
+							<form
+								action="<spring:url value="/employer/student_search"/>">
 								<input type="text" name="freeText" value="${param.freeText}"
-									placeholder="Enter contact name" />
+									placeholder="Enter skill to search" />
 								<button>Find</button>
 							</form>
 						</td>
@@ -53,13 +54,17 @@
 
 					<button>Delete Selected Records</button>
 					</br> </br>
-					<table border="1" cellpadding="3" width="45%">
+					<table class="table_background" border="1" cellpadding="3" width="100%">
 						<tr>
 							<th></th>
 							<th>No</th>
 							<th>Name</th>
 							<th>Email</th>
 							<th>University</th>
+							<th>Course</th>
+							<th>Personal projects</th>
+							<th>Grades</th>
+							<th>Extra</th>
 							<th>Action</th>
 						</tr>
 						<c:if test="${empty studentList}">
@@ -76,12 +81,19 @@
 								<td>${c.name}</td>
 								<td>${c.email}</td>
 								<td>${c.skillSet.university}</td>
+								<td>${c.skillSet.course}</td>
+								<td>${c.skillSet.personalProjects}</td>
+								<td>${c.skillSet.grades}</td>
+								<td>${c.skillSet.extra}</td>
 
-								<spring:url var="url_view" value="/employer/view_skills">
+								<spring:url var="url_engage" value="/employer/engage">
+									<spring:param name="cid" value="${c.user_id}" />
+								</spring:url>
+								<spring:url var="url_undo" value="/employer/undo">
 									<spring:param name="cid" value="${c.user_id}" />
 								</spring:url>
 								
-								<td><a href="${url_view}">View skills</a></td>
+								<td><a href="${url_engage}">Engage</a>/<a href="${url_undo}">Undo</a></td>
 							</tr>
 						</c:forEach>
 					</table>

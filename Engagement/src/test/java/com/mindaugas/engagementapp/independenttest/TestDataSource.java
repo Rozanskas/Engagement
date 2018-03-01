@@ -1,4 +1,4 @@
-package com.luv2code.springsecurity.demo;
+package com.mindaugas.engagementapp.independenttest;
 
 import java.security.spec.DSAGenParameterSpec;
 

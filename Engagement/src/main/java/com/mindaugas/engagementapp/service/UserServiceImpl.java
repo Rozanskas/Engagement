@@ -78,4 +78,9 @@ public class UserServiceImpl extends BaseDao implements UserService {
 		}
 	}
 
+	@Override
+	public User findById(int userId) {
+		return userDao.findById(userId);
+	}
+
 }

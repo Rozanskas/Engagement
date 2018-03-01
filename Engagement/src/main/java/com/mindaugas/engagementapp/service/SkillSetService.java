@@ -15,4 +15,6 @@ public interface SkillSetService {
 	public SkillSet findById(int skillSetId);
 	
 	public void delete(int skillSetId);
+	
+	public List<SkillSet> findSkillSetByProperty(String txt);
 }

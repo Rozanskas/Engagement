@@ -1,4 +1,4 @@
-package com.luv2code.springsecurity.demo;
+package com.mindaugas.engagementapp.independenttest;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -15,10 +15,7 @@ public class TestUserServiceRegisterOperation {
 		UserService userService = ctx.getBean(UserService.class);
 		User user = new User();
 		user.setName("Nitin");
-		user.setPhone("444444");
 		user.setEmail("rozaemail");
-		user.setAddress("adresss");
-		user.setLoginName("NINI");
 		user.setPassword("nonencrypt");
 		user.setRole(userService.ROLE_ADMIN);
 		user.setLoginStatus(userService.LOGIN_STATUS_ACTIVE);

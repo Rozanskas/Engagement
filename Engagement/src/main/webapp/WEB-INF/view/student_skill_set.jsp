@@ -35,7 +35,7 @@
 				<c:if test="${param.act eq 'del'}">
 					<p class="success">Skill set was deleted successfully</p>
 				</c:if>
-				<table border="1" cellpadding="3" width="100%">
+				<table class="table_background" border="1" cellpadding="3" width="100%">
 					<tr>
 
 						<th>University</th>
@@ -43,6 +43,7 @@
 						<th>Personal Projects</th>
 						<th>Grades</th>
 						<th>Extra</th>
+						<th>Action</th>
 					</tr>
 					<c:choose>
 						<c:when test="${empty skillSet}">

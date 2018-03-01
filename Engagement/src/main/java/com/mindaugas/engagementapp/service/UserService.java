@@ -25,5 +25,7 @@ public interface UserService {
 	public void changeLoginStatus(int userId, int loginStatus);
 	
 	public boolean usernameExists(String username);
+	
+	public User findById(int userId);
 
 }

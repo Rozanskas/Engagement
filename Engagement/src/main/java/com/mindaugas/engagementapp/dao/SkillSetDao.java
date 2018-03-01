@@ -14,7 +14,7 @@ public interface SkillSetDao {
 	
 	public void update(SkillSet skillset);
 	
-	public List<User> findStudentByProperty(String propName,Object propValue);
+	public List<SkillSet> findSkillSetByProperty(String txt);
 
 	public SkillSet findById(int skillSetId);
 
