@@ -43,6 +43,7 @@
 						<th>Personal Projects</th>
 						<th>Grades</th>
 						<th>Extra</th>
+						<th>Skills</th>
 						<th>Action</th>
 					</tr>
 					<c:choose>
@@ -65,6 +66,7 @@
 								<td>${skillSet.personalProjects}</td>
 								<td>${skillSet.grades}</td>
 								<td>${skillSet.extra}</td>
+								<td>${skillSet.skill}</td>
 
 								<spring:url var="url_del" value="/student/del_skill">
 									<spring:param name="cid" value="${skillSet.skillSetId}" />

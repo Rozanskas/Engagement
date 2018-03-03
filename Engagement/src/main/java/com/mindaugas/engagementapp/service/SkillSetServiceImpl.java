@@ -43,8 +43,8 @@ public class SkillSetServiceImpl implements SkillSetService {
 	}
 
 	@Override
-	public List<SkillSet> findSkillSetByProperty(String txt) {
-		return skillSetDao.findSkillSetByProperty(txt);
+	public List<SkillSet> findSkillSetByProperty(String uni,String course,String pp,String skill,String grade,String extra) {
+		return skillSetDao.findSkillSetByProperty(uni,course,pp,skill,grade,extra);
 	}
 	
 

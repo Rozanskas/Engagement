@@ -46,7 +46,7 @@
 						</tr>
 						<tr>
 							<td>Personal Projects</td>
-							<td><form:input path="personalProjects" /></td>
+							<td><form:textarea path="personalProjects" /></td>
 
 						</tr>
 						<tr>
@@ -57,7 +57,12 @@
 
 						<tr>
 							<td>Extra work</td>
-							<td><form:input path="extra" /></td>
+							<td><form:textarea path="extra" /></td>
+
+						</tr>
+						<tr>
+							<td>Skills</td>
+							<td><form:textarea path="skill" /></td>
 
 						</tr>
 						<tr>

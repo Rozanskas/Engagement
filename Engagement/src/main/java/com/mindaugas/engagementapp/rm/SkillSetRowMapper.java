@@ -19,6 +19,7 @@ public class SkillSetRowMapper implements RowMapper<SkillSet>{
 		  skillSet.setPersonalProjects(rs.getString("personal_projects"));
 		  skillSet.setGrades(rs.getString("grades"));
 		  skillSet.setExtra(rs.getString("extra"));
+		  skillSet.setSkill(rs.getString("skill"));
 	
 		return skillSet;
 	}

@@ -8,6 +8,7 @@ public class SkillSet {
 	private String course;
 	private String personalProjects;
 	private String grades;
+	private String skill;
 	private String extra;
 	
 	public SkillSet(){}
@@ -15,9 +16,19 @@ public class SkillSet {
 	public Integer getSkillSetId() {
 		return skillSetId;
 	}
+	
 
 	public void setSkillSetId(Integer skillSetId) {
 		this.skillSetId = skillSetId;
+	}
+	
+
+	public String getSkill() {
+		return skill;
+	}
+
+	public void setSkill(String skill) {
+		this.skill = skill;
 	}
 
 	public Integer getStudentId() {

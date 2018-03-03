@@ -38,12 +38,22 @@
 				<h3>Search students</h3>
 				<table width="100%">
 					<tr>
-						<td align="left">
+						<td >
 							<form
 								action="<spring:url value="/employer/student_search"/>">
-								<input type="text" name="freeText" value="${param.freeText}"
+								<input size="19" type="text" name="uni" value="${param.uni}"
+									placeholder="Enter University to search" />
+									<input size="19" type="text" name="course" value="${param.course}"
+									placeholder="Enter Course to search" />
+									<input size="19" type="text" name="pp" value="${param.pp}"
+									placeholder="Search in personal projects" />
+									<input size="19" type="text" name="grade" value="${param.grade}"
+									placeholder="Enter grade to search" />
+									<input size="19" type="text" name="skill" value="${param.skill}"
 									placeholder="Enter skill to search" />
-								<button>Find</button>
+									<input size="19" type="text" name="extra" value="${param.extra}"
+									placeholder="Search in extra" />
+								<input alt="Submit" type="submit" id="find" value="Find!">
 							</form>
 						</td>
 					</tr>
@@ -64,6 +74,7 @@
 							<th>Course</th>
 							<th>Personal projects</th>
 							<th>Grades</th>
+							<th>Skills</th>
 							<th>Extra</th>
 							<th>Action</th>
 						</tr>
@@ -84,6 +95,7 @@
 								<td>${c.skillSet.course}</td>
 								<td>${c.skillSet.personalProjects}</td>
 								<td>${c.skillSet.grades}</td>
+								<td>${c.skillSet.skill}</td>
 								<td>${c.skillSet.extra}</td>
 
 								<spring:url var="url_engage" value="/employer/engage">

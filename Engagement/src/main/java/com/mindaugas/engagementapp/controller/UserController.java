@@ -170,9 +170,11 @@ public class UserController {
 	}
 
 	@RequestMapping(value="/employer/student_search")
-	public String studentSearch(Model model,HttpSession session,@RequestParam("freeText")String freeText){
+	public String studentSearch(Model model,HttpSession session,@RequestParam("uni")String uni,
+			@RequestParam("course")String course,@RequestParam("skill")String skills,@RequestParam("grade")String grade,
+			@RequestParam("pp")String pp,@RequestParam("extra")String extra){
 		
-		List<SkillSet> skillSetList = skillSetService.findSkillSetByProperty(freeText);
+		List<SkillSet> skillSetList = skillSetService.findSkillSetByProperty(uni,course,pp,skills,grade,extra);
 		List<User> studentList = new ArrayList<>() ;
 		 for(SkillSet skill : skillSetList){
 			 User tempStudent = userService.findById(skill.getStudentId());
