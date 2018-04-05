@@ -30,6 +30,8 @@ public interface UserService {
 
 	public void engageWithStudent(int empId, Integer studentId);
 
+	public void undoStudent(int empId, Integer studentId);
+
 	
 
 }

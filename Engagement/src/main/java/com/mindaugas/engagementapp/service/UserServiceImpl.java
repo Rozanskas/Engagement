@@ -89,6 +89,12 @@ public class UserServiceImpl extends BaseDao implements UserService {
 		
 	}
 
+	@Override
+	public void undoStudent(int empId, Integer studentId) {
+		userDao.undoStudent(empId,studentId);
+		
+	}
+
 	
 
 }

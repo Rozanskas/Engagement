@@ -21,6 +21,8 @@ public interface UserDao {
 
 	public void engageWithStudent(int empId, int studentId);
 
+	public void undoStudent(int empId, int studentId);
+
 	
 
 }

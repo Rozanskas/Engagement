@@ -203,5 +203,13 @@ public class UserController {
 		userService.engageWithStudent(empId,studentId);
 		return "Student was successfully added to Engagement list";
 	}
+	
+	@RequestMapping(value = "/employer/undo")
+	@ResponseBody
+	public String undo(@RequestParam("cid")Integer studentId,HttpSession session) {
+		int empId = (Integer)session.getAttribute("userId");
+		userService.undoStudent(empId,studentId);
+		return "Student was successfully removed from Engagement list";
+	}
 
 }

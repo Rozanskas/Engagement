@@ -112,7 +112,7 @@
 											<c:if test="${c.user_id==e.studentId}">
 												<script>bool=1;</script>
 												<button type="button" class="btn btn-warning"
-													onclick="engage(${c.user_id})">Undo</button>
+													onclick="undo(${c.user_id})">Undo</button>
 											</c:if>
 
 										</c:forEach>
@@ -141,6 +141,19 @@
 			
 			$.ajax({
 				url : 'engage',
+				data : {
+					cid : userId
+					
+				},
+				success : function(data) {
+					window.location.reload();
+				}
+			});
+		}
+function undo(userId){
+			
+			$.ajax({
+				url : 'undo',
 				data : {
 					cid : userId
 					
