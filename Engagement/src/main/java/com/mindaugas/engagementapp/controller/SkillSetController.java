@@ -36,7 +36,6 @@ public class SkillSetController {
 			return "student_skill_set";
 		} catch (Exception e) {
 
-			e.printStackTrace();
 			return "student_skill_set";
 		}
 	}

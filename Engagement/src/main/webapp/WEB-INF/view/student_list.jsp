@@ -9,6 +9,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href='<spring:url value="/resources/css/style.css"/>'
 	rel="stylesheet" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<spring:url var="url_jqlib" value="/resources/js/jquery-3.3.1.min.js" />
+<script src="${url_jqlib}"></script>
+
 <title>Search students</title>
 </head>
 <spring:url var="url_bg" value="/images/img01.jpg"></spring:url>
@@ -38,22 +42,21 @@
 				<h3>Search students</h3>
 				<table width="100%">
 					<tr>
-						<td >
-							<form
-								action="<spring:url value="/employer/student_search"/>">
+						<td>
+							<form action="<spring:url value="/employer/student_search"/>">
 								<input size="19" type="text" name="uni" value="${param.uni}"
-									placeholder="Enter University to search" />
-									<input size="19" type="text" name="course" value="${param.course}"
-									placeholder="Enter Course to search" />
-									<input size="19" type="text" name="pp" value="${param.pp}"
-									placeholder="Search in personal projects" />
-									<input size="19" type="text" name="grade" value="${param.grade}"
-									placeholder="Enter grade to search" />
-									<input size="19" type="text" name="skill" value="${param.skill}"
-									placeholder="Enter skill to search" />
-									<input size="19" type="text" name="extra" value="${param.extra}"
-									placeholder="Search in extra" />
-								<input alt="Submit" type="submit" id="find" value="Find!">
+									placeholder="Enter University to search" /> <input size="19"
+									type="text" name="course" value="${param.course}"
+									placeholder="Enter Course to search" /> <input size="19"
+									type="text" name="pp" value="${param.pp}"
+									placeholder="Search in personal projects" /> <input size="19"
+									type="text" name="grade" value="${param.grade}"
+									placeholder="Enter grade to search" /> <input size="19"
+									type="text" name="skill" value="${param.skill}"
+									placeholder="Enter skill to search" /> <input size="19"
+									type="text" name="extra" value="${param.extra}"
+									placeholder="Search in extra" /> <input alt="Submit"
+									type="submit" id="find" value="Find!">
 							</form>
 						</td>
 					</tr>
@@ -64,7 +67,8 @@
 
 					<button>Delete Selected Records</button>
 					</br> </br>
-					<table class="table_background" border="1" cellpadding="3" width="100%">
+					<table class="table_background" border="1" cellpadding="3"
+						width="100%">
 						<tr>
 							<th></th>
 							<th>No</th>
@@ -84,7 +88,10 @@
 									Presented</td>
 							</tr>
 						</c:if>
+
+
 						<c:forEach var="c" items="${studentList}" varStatus="st">
+							<script>var bool=0;</script>
 							<tr>
 								<td align="center"><input type="checkbox" name="cid"
 									value="${c.user_id}"></td>
@@ -98,14 +105,21 @@
 								<td>${c.skillSet.skill}</td>
 								<td>${c.skillSet.extra}</td>
 
-								<spring:url var="url_engage" value="/employer/engage">
-									<spring:param name="cid" value="${c.user_id}" />
-								</spring:url>
-								<spring:url var="url_undo" value="/employer/undo">
-									<spring:param name="cid" value="${c.user_id}" />
-								</spring:url>
-								
-								<td><a href="${url_engage}">Engage</a>/<a href="${url_undo}">Undo</a></td>
+								<td align="center"><p id="${st.count}">
+									<p>
+										<c:forEach var="e" items="${engagementList}">
+
+											<c:if test="${c.user_id==e.studentId}">
+												<script>bool=1;</script>
+												<button type="button" class="btn btn-warning"
+													onclick="engage(${c.user_id})">Undo</button>
+											</c:if>
+
+										</c:forEach>
+										<script>if(bool==0){
+										var r= $('<input type="button" value="new button"/>');
+										document.getElementById("${st.count}").innerHTML = "<button class='btn btn-success' type='button' onclick='engage(${c.user_id})'>Engage</button>";
+									}</script>
 							</tr>
 						</c:forEach>
 					</table>
@@ -120,4 +134,22 @@
 
 	</table>
 </body>
+<script>
+
+		
+		function engage(userId){
+			
+			$.ajax({
+				url : 'engage',
+				data : {
+					cid : userId
+					
+				},
+				success : function(data) {
+					window.location.reload();
+				}
+			});
+		}
+	
+</script>
 </html>

@@ -1,5 +1,7 @@
 package com.mindaugas.engagementapp.dao;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -88,4 +90,19 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 		return getJdbcTemplate().query(sql, new UserRowMapper(),propValue);
 	}
 
+	@Override
+	public void engageWithStudent(int empId, int studentId) {
+		String sql = "Insert into engagement(student_id,employer_id,dateOfEngagement)"
+				+ "VALUES (:studentID,:employerId,:date)";
+		Map m = new HashMap();
+		m.put("studentID", studentId);
+		m.put("employerId", empId);
+		m.put("date", new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
+		SqlParameterSource ps = new MapSqlParameterSource(m);
+		super.getNamedParameterJdbcTemplate().update(sql, ps);
+		
+		
+	}
+
+	
 }

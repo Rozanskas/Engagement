@@ -28,4 +28,8 @@ public interface UserService {
 	
 	public User findById(int userId);
 
+	public void engageWithStudent(int empId, Integer studentId);
+
+	
+
 }

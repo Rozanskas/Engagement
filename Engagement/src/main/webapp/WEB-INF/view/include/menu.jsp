@@ -17,11 +17,11 @@
 <a href="${url_index}" >Home</a> <a href="${url_index}" >Login</a> <a href="${url_reg}" >Register</a> <a href="" >About</a>
 </c:if>
 <c:if test="${sessionScope.userId!=null && sessionScope.role== 1}">
-<a href="${url_emp_home}" > Home </a> <a href="" >Update profile </a> <a href="${url_students}" >Search Candidates </a><a href="" > Engaging candidates </a>  <a href="${url_logout}" >Log Out</a> <a href="" > Messages </a>
+<a href="${url_emp_home}" > Home </a> <a href="" >Update profile </a> <a href="${url_students}" >Search Candidates </a><a href="" > Engaging candidates </a><a href="" > Messages </a>  <a href="${url_logout}" >Log Out</a> 
 </c:if>
 <c:if test="${sessionScope.userId!=null && sessionScope.role== 3}">
-<a href="${url_admin_home}" >Home</a> <a href="${url_users}" >User List</a> <a href="${url_logout}" >Log Out</a> <a href="" >About</a>
+<a href="${url_admin_home}" >Home</a> <a href="${url_users}" >User List</a> <a href="" >About</a> <a href="${url_logout}" >Log Out</a>
 </c:if>
 <c:if test="${sessionScope.userId!=null && sessionScope.role== 2}">
-<a href="${url_student_home}" >Home</a> <a href="${url_student_skill}" >Skill Set</a> <a href="${url_clist}" >Contact List</a> <a href="${url_logout}" >Log Out</a> <a href="" >About</a>
+<a href="${url_student_home}" >Home</a> <a href="${url_student_skill}" >Skill Set</a> <a href="" >About</a><a href="${url_logout}" >Log Out</a> 
 </c:if>

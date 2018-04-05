@@ -19,4 +19,8 @@ public interface UserDao {
 	
 	public List<User> findByProperty(String propName,Object propValue);
 
+	public void engageWithStudent(int empId, int studentId);
+
+	
+
 }

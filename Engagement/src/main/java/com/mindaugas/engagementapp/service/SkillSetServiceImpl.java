@@ -46,6 +46,7 @@ public class SkillSetServiceImpl implements SkillSetService {
 	public List<SkillSet> findSkillSetByProperty(String uni,String course,String pp,String skill,String grade,String extra) {
 		return skillSetDao.findSkillSetByProperty(uni,course,pp,skill,grade,extra);
 	}
+
 	
 
 }

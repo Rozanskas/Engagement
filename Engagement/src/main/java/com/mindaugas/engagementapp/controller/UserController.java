@@ -17,10 +17,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mindaugas.engagementapp.command.LoginCommand;
 import com.mindaugas.engagementapp.command.UserCommand;
-import com.mindaugas.engagementapp.dao.SkillSetDao;
 import com.mindaugas.engagementapp.exception.UserBlockedException;
+import com.mindaugas.engagementapp.model.Engagement;
 import com.mindaugas.engagementapp.model.SkillSet;
 import com.mindaugas.engagementapp.model.User;
+import com.mindaugas.engagementapp.service.EngagementService;
 import com.mindaugas.engagementapp.service.SkillSetService;
 import com.mindaugas.engagementapp.service.UserService;
 
@@ -31,6 +32,8 @@ public class UserController {
 	UserService userService;
 	@Autowired
 	SkillSetService skillSetService;
+	@Autowired
+	EngagementService engagementService;
 
 	@RequestMapping(value = { "/", "/index" })
 	public String index(Model model) {
@@ -81,14 +84,17 @@ public class UserController {
 	}
 
 	@RequestMapping(value = { "/employer/student_list" })
-	public String studentList(Model model) {
+	public String studentList(Model model, HttpSession session) {
+		int empId = (Integer)session.getAttribute("userId");
+		List<Engagement> engagementList = engagementService.getStudentsEngaged(empId);
+		model.addAttribute("engagementList",engagementList);
 		List<User> studentList = userService.getStudentList();
 		model.addAttribute("studentList", studentList);
 		for (User student : studentList) {
 
 			try {
-
 				student.setSkillSet(skillSetService.findSkillSetByStudentId(student.getUser_id()));
+				
 			} catch (Exception e) {
 
 				e.printStackTrace();
@@ -173,15 +179,29 @@ public class UserController {
 	public String studentSearch(Model model,HttpSession session,@RequestParam("uni")String uni,
 			@RequestParam("course")String course,@RequestParam("skill")String skills,@RequestParam("grade")String grade,
 			@RequestParam("pp")String pp,@RequestParam("extra")String extra){
-		
+
+		int empId = (Integer)session.getAttribute("userId");
+		List<Engagement> engagementList = engagementService.getStudentsEngaged(empId);
+		model.addAttribute("engagementList",engagementList);
 		List<SkillSet> skillSetList = skillSetService.findSkillSetByProperty(uni,course,pp,skills,grade,extra);
 		List<User> studentList = new ArrayList<>() ;
 		 for(SkillSet skill : skillSetList){
 			 User tempStudent = userService.findById(skill.getStudentId());
 			 tempStudent.setSkillSet(skill);
+			 
 			 studentList.add(tempStudent);
 		 }
 		model.addAttribute("studentList", studentList);
+		
 		return "student_list";
 	}
+	
+	@RequestMapping(value = "/employer/engage")
+	@ResponseBody
+	public String engage(@RequestParam("cid")Integer studentId,HttpSession session) {
+		int empId = (Integer)session.getAttribute("userId");
+		userService.engageWithStudent(empId,studentId);
+		return "Student was successfully added to Engagement list";
+	}
+
 }

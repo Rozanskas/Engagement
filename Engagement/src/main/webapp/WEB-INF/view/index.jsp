@@ -11,6 +11,7 @@
 <title>User Login</title>
 </head>
 <spring:url var="url_bg" value="/images/img01.jpg"></spring:url>
+<spring:url var="url_reg" value="/reg_form"/>
 
 <body background="${url_bg}">
 	<table border="1" width="80%" align="center">
@@ -53,7 +54,7 @@
 			   		<tr>
 			   			<td colspan="2" align="right">
 			   			<button>Login</button><br/>
-			   			<a href="">Register new user</a>
+			   			<a href="${url_reg}">Register new user</a>
 			   			</td>
 			   			
 			   			
