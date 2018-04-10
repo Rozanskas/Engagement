@@ -5,10 +5,24 @@ public class Engagement {
 	private Integer studentId;
 	private Integer employerId;
 	private String date;
+	private Integer interest;
 	
 
 	public Engagement() {
 	}
+
+	
+
+	public Integer getInterest() {
+		return interest;
+	}
+
+
+
+	public void setInterest(Integer interest) {
+		this.interest = interest;
+	}
+
 
 
 	public Integer getStudentId() {

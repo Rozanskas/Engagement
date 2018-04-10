@@ -29,54 +29,65 @@
 
 			</td>
 		</tr>
+
 		<tr>
-			<td height="350px" valign="top">
+			<td height="350px" valign="top"><c:if
+					test="${param.act eq 'ed'}">
+					<p class="success">Engagement profile was updated successfully</p>
+				</c:if>
 
-				<h3>${user.name} candidates list</h3>
+				<h3>${user.name}candidates List</h3>
 
-					<table class="table_background" border="1" cellpadding="3"
-						width="100%">
+				<table class="table_background" border="1" cellpadding="3"
+					width="100%">
+					<tr>
+						<th>No</th>
+						<th>Name</th>
+						<th>Email</th>
+						<th>University</th>
+						<th>Course</th>
+						<th>Personal projects</th>
+						<th>Grades</th>
+						<th>Skills</th>
+						<th>Extra</th>
+						<th>Action</th>
+						<th>Engagement Profile</th>
+					</tr>
+					<c:if test="${empty studentList}">
 						<tr>
-							<th>No</th>
-							<th>Name</th>
-							<th>Email</th>
-							<th>University</th>
-							<th>Course</th>
-							<th>Personal projects</th>
-							<th>Grades</th>
-							<th>Skills</th>
-							<th>Extra</th>
-							<th>Action</th>
+							<td align="center" colspan="8" class="error">No Records
+								Presented</td>
 						</tr>
-						<c:if test="${empty studentList}">
-							<tr>
-								<td align="center" colspan="8" class="error">No Records
-									Presented</td>
-							</tr>
-						</c:if>
+					</c:if>
 
 
-						<c:forEach var="c" items="${studentList}" varStatus="st">
-							<script>var bool=0;</script>
-							<tr>
-								<td>${st.count}</td>
-								<td>${c.name}</td>
-								<td>${c.email}</td>
-								<td>${c.skillSet.university}</td>
-								<td>${c.skillSet.course}</td>
-								<td>${c.skillSet.personalProjects}</td>
-								<td>${c.skillSet.grades}</td>
-								<td>${c.skillSet.skill}</td>
-								<td>${c.skillSet.extra}</td>
+					<c:forEach var="c" items="${studentList}" varStatus="st">
+						<script>var bool=0;</script>
+						<tr>
+							<td>${st.count}</td>
+							<td>${c.name}</td>
+							<td>${c.email}</td>
+							<td>${c.skillSet.university}</td>
+							<td>${c.skillSet.course}</td>
+							<td>${c.skillSet.personalProjects}</td>
+							<td>${c.skillSet.grades}</td>
+							<td>${c.skillSet.skill}</td>
+							<td>${c.skillSet.extra}</td>
 
-								<td align="center">
-										<button type="button" class="btn btn-warning"
-												onclick="undo(${c.user_id})">Undo</button>
+							<td align="center">
+								<button type="button" class="btn btn-warning"
+									onclick="undo(${c.user_id})">Undo</button>
+							</td>
+							<spring:url var="url_e_profile" value="/employer/e_profile">
+								<spring:param name="studentId" value="${c.user_id}" />
+							</spring:url>
+							<td><a href="${url_e_profile}"><button
+										class="btn-info btn-sm">Engagement Profile</button></a></td>
 
-							</tr>
-						</c:forEach>
-					</table>
-			</td>
+
+						</tr>
+					</c:forEach>
+				</table></td>
 		</tr>
 		<tr>
 			<td height="25px"><jsp:include page="include/footer.jsp" /></td>

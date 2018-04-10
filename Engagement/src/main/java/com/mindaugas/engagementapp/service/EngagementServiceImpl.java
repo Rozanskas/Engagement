@@ -20,4 +20,15 @@ public class EngagementServiceImpl implements EngagementService {
 		
 	}
 
+	@Override
+	public Engagement getStudentEngagement(int studentId,int empId) {
+		return engagementDao.getStudentEngagement(studentId,empId);
+	}
+
+	@Override
+	public void updateEngagement(Engagement engagement) {
+		engagementDao.updateEngagement(engagement);
+		
+	}
+
 }

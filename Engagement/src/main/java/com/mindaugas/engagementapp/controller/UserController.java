@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.mindaugas.engagementapp.command.LoginCommand;
 import com.mindaugas.engagementapp.command.UserCommand;
 import com.mindaugas.engagementapp.exception.UserBlockedException;
@@ -73,6 +72,31 @@ public class UserController {
 
 	}
 
+	
+	@RequestMapping(value = { "/employer/e_update" })
+	public String eProfileUpdate(@RequestParam int studentId,@ModelAttribute("engagement") Engagement engagement,Model model,HttpSession session) {
+		int empId = (Integer) session.getAttribute("userId");
+	    try {
+	    	engagement.setEmployerId(empId);
+	    	engagement.setStudentId(studentId);
+			engagementService.updateEngagement(engagement);
+			return "redirect:engaging_candidates?act=ed";
+		} catch (Exception e) {
+			e.printStackTrace();
+			model.addAttribute("err","Failed to save changes ");
+			return "emp_e_profile";
+		}
+		
+	}
+	
+	@RequestMapping(value = { "/employer/e_profile" })
+	public String eProfile(@RequestParam int studentId,Model model,HttpSession session) {
+		int empId = (Integer) session.getAttribute("userId");
+		Engagement engagement =engagementService.getStudentEngagement(studentId,empId);
+		model.addAttribute("engagement", engagement);
+		return "emp_e_profile";
+	}
+
 	@RequestMapping(value = { "/student/dashboard" })
 	public String studentDashboard() {
 		return "dashboard_student";
@@ -82,20 +106,21 @@ public class UserController {
 	public String employerDashboard() {
 		return "dashboard_employer";
 	}
+
 	@RequestMapping(value = { "/employer/engaging_candidates" })
 	public String engagingCandidates(Model model, HttpSession session) {
-		int empId = (Integer)session.getAttribute("userId");
+		int empId = (Integer) session.getAttribute("userId");
 		List<User> studentList = new ArrayList<>();
-		
+
 		try {
 			List<Engagement> engagementList = engagementService.getStudentsEngaged(empId);
-			for(Engagement engagement:engagementList){
+			for (Engagement engagement : engagementList) {
 				User student = userService.findById(engagement.getStudentId());
 				student.setSkillSet(skillSetService.findSkillSetByStudentId(student.getUser_id()));
 				studentList.add(student);
 			}
 		} catch (Exception e) {
-			
+
 		}
 		model.addAttribute("studentList", studentList);
 		return "engaging_candidates";
@@ -103,7 +128,7 @@ public class UserController {
 
 	@RequestMapping(value = { "/employer/student_list" })
 	public String studentList(Model model, HttpSession session) {
-		int empId = (Integer)session.getAttribute("userId");
+		int empId = (Integer) session.getAttribute("userId");
 		List<User> studentList = userService.getStudentList();
 		model.addAttribute("studentList", studentList);
 		for (User student : studentList) {
@@ -111,7 +136,7 @@ public class UserController {
 			try {
 				student.setSkillSet(skillSetService.findSkillSetByStudentId(student.getUser_id()));
 				List<Engagement> engagementList = engagementService.getStudentsEngaged(empId);
-				model.addAttribute("engagementList",engagementList);
+				model.addAttribute("engagementList", engagementList);
 			} catch (Exception e) {
 				return "student_list";
 
@@ -166,7 +191,7 @@ public class UserController {
 			userService.changeLoginStatus(userId, loginStatus);
 			return "Success: Status changed";
 		} catch (Exception e) {
-			
+
 			return "Error: Unable to change status";
 		}
 
@@ -189,44 +214,44 @@ public class UserController {
 
 	}
 
-	@RequestMapping(value="/employer/student_search")
-	public String studentSearch(Model model,HttpSession session,@RequestParam("uni")String uni,
-			@RequestParam("course")String course,@RequestParam("skill")String skills,@RequestParam("grade")String grade,
-			@RequestParam("pp")String pp,@RequestParam("extra")String extra){
+	@RequestMapping(value = "/employer/student_search")
+	public String studentSearch(Model model, HttpSession session, @RequestParam("uni") String uni,
+			@RequestParam("course") String course, @RequestParam("skill") String skills,
+			@RequestParam("grade") String grade, @RequestParam("pp") String pp, @RequestParam("extra") String extra) {
 
-		int empId = (Integer)session.getAttribute("userId");
+		int empId = (Integer) session.getAttribute("userId");
 		try {
 			List<Engagement> engagementList = engagementService.getStudentsEngaged(empId);
-			model.addAttribute("engagementList",engagementList);
+			model.addAttribute("engagementList", engagementList);
 		} catch (Exception e) {
-			
+
 		}
-		List<SkillSet> skillSetList = skillSetService.findSkillSetByProperty(uni,course,pp,skills,grade,extra);
-		List<User> studentList = new ArrayList<>() ;
-		 for(SkillSet skill : skillSetList){
-			 User tempStudent = userService.findById(skill.getStudentId());
-			 tempStudent.setSkillSet(skill);
-			 
-			 studentList.add(tempStudent);
-		 }
+		List<SkillSet> skillSetList = skillSetService.findSkillSetByProperty(uni, course, pp, skills, grade, extra);
+		List<User> studentList = new ArrayList<>();
+		for (SkillSet skill : skillSetList) {
+			User tempStudent = userService.findById(skill.getStudentId());
+			tempStudent.setSkillSet(skill);
+
+			studentList.add(tempStudent);
+		}
 		model.addAttribute("studentList", studentList);
-		
+
 		return "student_list";
 	}
-	
+
 	@RequestMapping(value = "/employer/engage")
 	@ResponseBody
-	public String engage(@RequestParam("cid")Integer studentId,HttpSession session) {
-		int empId = (Integer)session.getAttribute("userId");
-		userService.engageWithStudent(empId,studentId);
+	public String engage(@RequestParam("cid") Integer studentId, HttpSession session) {
+		int empId = (Integer) session.getAttribute("userId");
+		userService.engageWithStudent(empId, studentId);
 		return "Student was successfully added to Engagement list";
 	}
-	
+
 	@RequestMapping(value = "/employer/undo")
 	@ResponseBody
-	public String undo(@RequestParam("cid")Integer studentId,HttpSession session) {
-		int empId = (Integer)session.getAttribute("userId");
-		userService.undoStudent(empId,studentId);
+	public String undo(@RequestParam("cid") Integer studentId, HttpSession session) {
+		int empId = (Integer) session.getAttribute("userId");
+		userService.undoStudent(empId, studentId);
 		return "Student was successfully removed from Engagement list";
 	}
 

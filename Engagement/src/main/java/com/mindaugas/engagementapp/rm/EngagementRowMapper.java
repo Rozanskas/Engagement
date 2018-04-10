@@ -16,6 +16,7 @@ public class EngagementRowMapper implements RowMapper<Engagement>{
 		engagement.setEmployerId(rs.getInt("employer_id"));
 		engagement.setStudentId(rs.getInt("student_id"));
 		engagement.setDate(rs.getString("dateOfEngagement"));
+		engagement.setInterest(rs.getInt("interest"));
 		return engagement;
 	}
 
