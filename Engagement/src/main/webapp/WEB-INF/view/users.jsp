@@ -47,9 +47,7 @@
 						<th>SR</th>
 						<th>User ID</th>
 						<th>Name</th>
-						<th>Phone</th>
 						<th>Email</th>
-						<th>Address</th>
 						<th>Login name</th>
 						<th>Login status</th>
 					</tr>
@@ -58,10 +56,8 @@
 							<td>${st.count}</td>
 							<td>${u.user_id}</td>
 							<td>${u.name}</td>
-							<td>${u.phone}</td>
 							<td>${u.email}</td>
-							<td>${u.address}</td>
-							<td>${u.loginName}</td>
+							<td>${u.name}</td>
 							<td><select id="id_${u.user_id}" onchange="changeStatus(${u.user_id},$(this).val())">
 									<option value="1">Active</option>
 									<option value="2">Blocked</option>

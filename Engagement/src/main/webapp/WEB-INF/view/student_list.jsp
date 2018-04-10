@@ -13,7 +13,7 @@
 <spring:url var="url_jqlib" value="/resources/js/jquery-3.3.1.min.js" />
 <script src="${url_jqlib}"></script>
 
-<title>Search students</title>
+<title>Search Candidates</title>
 </head>
 <spring:url var="url_bg" value="/images/img01.jpg"></spring:url>
 
@@ -29,7 +29,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td height="350px" valign="top">Contact List <c:if
+			<td height="350px" valign="top"><c:if
 					test="${err != null}">
 					<p class="error">${err}</p>
 				</c:if> <c:if test="${param.act eq 'sv'}">
@@ -39,7 +39,7 @@
 				</c:if> <c:if test="${param.act eq 'ed'}">
 					<p class="success">Contact was updated successfully</p>
 				</c:if>
-				<h3>Search students</h3>
+				<h3>Search Candidates</h3>
 				<table width="100%">
 					<tr>
 						<td>
@@ -63,14 +63,9 @@
 
 				</table> <br />
 
-				<form action="<spring:url value="/user/bulk_cdelete"/>">
-
-					<button>Delete Selected Records</button>
-					</br> </br>
 					<table class="table_background" border="1" cellpadding="3"
 						width="100%">
 						<tr>
-							<th></th>
 							<th>No</th>
 							<th>Name</th>
 							<th>Email</th>
@@ -92,9 +87,7 @@
 
 						<c:forEach var="c" items="${studentList}" varStatus="st">
 							<script>var bool=0;</script>
-							<tr>
-								<td align="center"><input type="checkbox" name="cid"
-									value="${c.user_id}"></td>
+							<tr>	
 								<td>${st.count}</td>
 								<td>${c.name}</td>
 								<td>${c.email}</td>
@@ -123,9 +116,6 @@
 							</tr>
 						</c:forEach>
 					</table>
-
-				</form>
-
 			</td>
 		</tr>
 		<tr>

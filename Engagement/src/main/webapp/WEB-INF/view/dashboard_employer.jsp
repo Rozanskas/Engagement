@@ -6,8 +6,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link href='<spring:url value="/resources/css/style.css"/>' rel="stylesheet" />
-<title>User Dashboard</title>
+<link href='<spring:url value="/resources/css/style.css"/>'
+	rel="stylesheet" />
+<title>Employer Dashboard</title>
 </head>
 <spring:url var="url_bg" value="/images/img01.jpg"></spring:url>
 
@@ -15,20 +16,21 @@
 	<table border="1" width="80%" align="center">
 		<tr>
 			<td height="80px">
-			<jsp:include page="include/header.jsp"/>
-			</td>
+			 <jsp:include page="include/header.jsp" /></td>
 		</tr>
 		<tr>
 			<td height="25px">
-				<h3 class="error"><jsp:include page="include/menu.jsp"/></h3>
-				
+				<h3 class="error"><jsp:include page="include/menu.jsp" /></h3>
+
 			</td>
 		</tr>
 		<tr>
-			<td height="350px" valign="top"> User Dashboard</td>
-		</tr>
+			<td height="350px" valign="top">
+			 
+			</td>
+		
 		<tr>
-			<td height="25px"> <jsp:include page="include/footer.jsp"/></td>
+			<td height="25px"><jsp:include page="include/footer.jsp" /></td>
 		</tr>
 
 	</table>

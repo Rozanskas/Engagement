@@ -82,22 +82,37 @@ public class UserController {
 	public String employerDashboard() {
 		return "dashboard_employer";
 	}
+	@RequestMapping(value = { "/employer/engaging_candidates" })
+	public String engagingCandidates(Model model, HttpSession session) {
+		int empId = (Integer)session.getAttribute("userId");
+		List<User> studentList = new ArrayList<>();
+		
+		try {
+			List<Engagement> engagementList = engagementService.getStudentsEngaged(empId);
+			for(Engagement engagement:engagementList){
+				User student = userService.findById(engagement.getStudentId());
+				student.setSkillSet(skillSetService.findSkillSetByStudentId(student.getUser_id()));
+				studentList.add(student);
+			}
+		} catch (Exception e) {
+			
+		}
+		model.addAttribute("studentList", studentList);
+		return "engaging_candidates";
+	}
 
 	@RequestMapping(value = { "/employer/student_list" })
 	public String studentList(Model model, HttpSession session) {
 		int empId = (Integer)session.getAttribute("userId");
-		List<Engagement> engagementList = engagementService.getStudentsEngaged(empId);
-		model.addAttribute("engagementList",engagementList);
 		List<User> studentList = userService.getStudentList();
 		model.addAttribute("studentList", studentList);
 		for (User student : studentList) {
 
 			try {
 				student.setSkillSet(skillSetService.findSkillSetByStudentId(student.getUser_id()));
-				
+				List<Engagement> engagementList = engagementService.getStudentsEngaged(empId);
+				model.addAttribute("engagementList",engagementList);
 			} catch (Exception e) {
-
-				e.printStackTrace();
 				return "student_list";
 
 			}
@@ -151,8 +166,7 @@ public class UserController {
 			userService.changeLoginStatus(userId, loginStatus);
 			return "Success: Status changed";
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 			return "Error: Unable to change status";
 		}
 
@@ -181,8 +195,12 @@ public class UserController {
 			@RequestParam("pp")String pp,@RequestParam("extra")String extra){
 
 		int empId = (Integer)session.getAttribute("userId");
-		List<Engagement> engagementList = engagementService.getStudentsEngaged(empId);
-		model.addAttribute("engagementList",engagementList);
+		try {
+			List<Engagement> engagementList = engagementService.getStudentsEngaged(empId);
+			model.addAttribute("engagementList",engagementList);
+		} catch (Exception e) {
+			
+		}
 		List<SkillSet> skillSetList = skillSetService.findSkillSetByProperty(uni,course,pp,skills,grade,extra);
 		List<User> studentList = new ArrayList<>() ;
 		 for(SkillSet skill : skillSetList){

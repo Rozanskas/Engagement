@@ -106,8 +106,8 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 
 	@Override
 	public void undoStudent(int empId, int studentId) {
-		String sql = "DELETE FROM engagement WHERE student_id=?";
-		getJdbcTemplate().update(sql,studentId);
+		String sql = "DELETE FROM engagement WHERE student_id=? and employer_id=?";
+		getJdbcTemplate().update(sql,studentId,empId);
 	}
 
 	
