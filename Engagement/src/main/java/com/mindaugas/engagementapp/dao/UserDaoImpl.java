@@ -110,5 +110,15 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 		getJdbcTemplate().update(sql,studentId,empId);
 	}
 
+	@Override
+	public void updateUserName(String name,int empId) {
+		String sql = "UPDATE user SET name=:name WHERE user_id=:userId";
+		Map m = new HashMap();
+		m.put("name", name);
+		m.put("userId", empId);
+		getNamedParameterJdbcTemplate().update(sql, m);
+		
+	}
+
 	
 }

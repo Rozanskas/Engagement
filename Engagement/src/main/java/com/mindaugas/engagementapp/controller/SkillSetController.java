@@ -50,7 +50,7 @@ public class SkillSetController {
 	}
 	
 	@RequestMapping(value="/student/del_skill")
-	public String deleteContact(@RequestParam("cid")Integer skillSetId,HttpSession session){
+	public String deleteSkillset(@RequestParam("cid")Integer skillSetId,HttpSession session){
 		skillSetService.delete(skillSetId);
 		session.removeAttribute("skillSetId");
 		return "redirect:skill_set?act=del";

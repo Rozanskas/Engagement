@@ -11,9 +11,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import com.mindaugas.engagementapp.model.SkillSet;
-import com.mindaugas.engagementapp.model.User;
 import com.mindaugas.engagementapp.rm.SkillSetRowMapper;
-import com.mindaugas.engagementapp.rm.UserRowMapper;
 
 @Repository
 public class SkillSetDaoImpl extends BaseDao implements SkillSetDao {

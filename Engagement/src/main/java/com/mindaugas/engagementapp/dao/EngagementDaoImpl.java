@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Repository;
+
 import com.mindaugas.engagementapp.model.Engagement;
 import com.mindaugas.engagementapp.rm.EngagementRowMapper;
 

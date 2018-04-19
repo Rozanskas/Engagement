@@ -254,5 +254,21 @@ public class UserController {
 		userService.undoStudent(empId, studentId);
 		return "Student was successfully removed from Engagement list";
 	}
-
+	
+	@RequestMapping(value = { "/employer/updateProfile" })
+	public String updateProfile(Model model,HttpSession session) {
+		int empId = (Integer) session.getAttribute("userId");
+		User user = userService.findById(empId);
+		model.addAttribute("user",user);
+		return "updateEmpProfile";
+	}
+	
+	@RequestMapping(value = { "/employer/saveUpdate" })
+	public String saveUpdate(@ModelAttribute ("user")User user,HttpSession session,Model model) {
+		int empId = (Integer) session.getAttribute("userId");
+		userService.updateUserName(user.getName(),empId);
+		session.setAttribute("user", user);
+		model.addAttribute("success","Changes saved successfully");
+		return "updateEmpProfile";
+	}
 }

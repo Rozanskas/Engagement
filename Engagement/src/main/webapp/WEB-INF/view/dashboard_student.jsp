@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href='<spring:url value="/resources/css/style.css"/>'
 	rel="stylesheet" />
-<title>User Dashboard</title>
+<title>Student Dashboard</title>
 </head>
 <spring:url var="url_bg" value="/images/img01.jpg"></spring:url>
 
@@ -24,7 +24,9 @@
 			</td>
 		</tr>
 		<tr>
-			<td height="350px" valign="top">Student Dashboard
+			<td height="350px" valign="top">
+			<h3>Welcome ${user.name}!</h3>
+			Engage with employers and find your future job here!  
 				
 
 			</td>

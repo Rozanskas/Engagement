@@ -95,6 +95,12 @@ public class UserServiceImpl extends BaseDao implements UserService {
 		
 	}
 
+	@Override
+	public void updateUserName(String name,int empId) {
+		userDao.updateUserName(name,  empId);
+		
+	}
+
 	
 
 }

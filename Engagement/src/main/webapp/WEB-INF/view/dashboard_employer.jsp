@@ -26,7 +26,9 @@
 		</tr>
 		<tr>
 			<td height="350px" valign="top">
-			 
+			
+			 <h3>Welcome ${user.name}!</h3> </br>
+			 Select your future employees in our application.
 			</td>
 		
 		<tr>

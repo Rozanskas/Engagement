@@ -32,6 +32,8 @@ public interface UserService {
 
 	public void undoStudent(int empId, Integer studentId);
 
+	public void updateUserName(String name,int empId);
+
 	
 
 }

@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href='<spring:url value="/resources/css/style.css"/>'
 	rel="stylesheet" />
-<title>Skill form</title>
+<title>Message form</title>
 </head>
 <spring:url var="url_bg" value="/images/img01.jpg"></spring:url>
 
@@ -25,49 +25,28 @@
 			</td>
 		</tr>
 		<tr>
-			<td height="350px" valign="top">Skill form <c:if
+			<td height="350px" valign="top">Message form <c:if
 					test="${err != null}">
 					<p class="error">${err}</p>
 				</c:if> <c:if test="${param.act eq 'lo'}">
 					<p class="success">"You have been Logged out successfully"</p>
-				</c:if> <spring:url var="url_save_skill" value="/student/save_skill_set"></spring:url>
-				<form:form action="${url_save_skill}" modelAttribute="skillSet">
+				</c:if> <spring:url var="url_send_Message" value="/employer/sendMessage"></spring:url>
+				<form:form action="${url_send_Message}" modelAttribute="message">
 					<table border="1">
 
 						<tr>
-							<td>University</td>
-							<td><form:input path="university" /></td>
+							<td>Header</td>
+							<td><form:input path="header" /></td>
 
 						</tr>
 						<tr>
-							<td>Course</td>
-							<td><form:input path="course" /></td>
-
-						</tr>
-						<tr>
-							<td>Personal Projects</td>
-							<td><form:textarea path="personalProjects" /></td>
-
-						</tr>
-						<tr>
-							<td>Grades</td>
-							<td><form:textarea path="grades" /></td>
-
-						</tr>
-
-						<tr>
-							<td>Extra work</td>
-							<td><form:textarea path="extra" /></td>
-
-						</tr>
-						<tr>
-							<td>Skills</td>
-							<td><form:textarea path="skill" /></td>
+							<td>Message</td>
+							<td><form:textarea path="message" /></td>
 
 						</tr>
 						<tr>
 							<td colspan="2" align="right">
-								<button>Save</button> <br />
+								<button>Send</button> <br />
 
 							</td>
 

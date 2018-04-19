@@ -52,6 +52,7 @@
 						<th>Extra</th>
 						<th>Action</th>
 						<th>Engagement Profile</th>
+						<th>Message</th>
 					</tr>
 					<c:if test="${empty studentList}">
 						<tr>
@@ -78,11 +79,17 @@
 								<button type="button" class="btn btn-warning"
 									onclick="undo(${c.user_id})">Undo</button>
 							</td>
+							
 							<spring:url var="url_e_profile" value="/employer/e_profile">
 								<spring:param name="studentId" value="${c.user_id}" />
 							</spring:url>
 							<td><a href="${url_e_profile}"><button
 										class="btn-info btn-sm">Engagement Profile</button></a></td>
+                           <spring:url var="url_message" value="/employer/messageForm">
+								<spring:param name="studentId" value="${c.user_id}" />
+							</spring:url>
+							<td><a href="${url_message}"><button
+										class="btn-info btn-sm">Message</button></a></td>
 
 
 						</tr>
