@@ -9,6 +9,8 @@ public interface MessageService {
 
 	public List<Message> getMessages(Integer employerId);
 	public void empSendMessage(Message message);
+	public List<Message> getMessagesSt(Integer studentId);
+	
 
 	
 }

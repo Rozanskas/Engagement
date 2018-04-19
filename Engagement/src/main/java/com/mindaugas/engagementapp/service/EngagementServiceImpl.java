@@ -30,5 +30,8 @@ public class EngagementServiceImpl implements EngagementService {
 		engagementDao.updateEngagement(engagement);
 		
 	}
+	public List<Engagement> getEmployersEngaged(int studentId){
+		return engagementDao.getEmployersEngaged(studentId);
+	}
 
 }

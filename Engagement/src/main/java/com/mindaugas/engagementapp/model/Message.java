@@ -7,11 +7,22 @@ public class Message {
 	private String date;
 	private String header;
 	private String receiverEmail;
+	private String senderEmail;
 	private Integer id;
 	
 	public Message(){
 	}
 	
+
+	public String getSenderEmail() {
+		return senderEmail;
+	}
+
+
+	public void setSenderEmail(String senderEmail) {
+		this.senderEmail = senderEmail;
+	}
+
 
 	public Integer getId() {
 		return id;

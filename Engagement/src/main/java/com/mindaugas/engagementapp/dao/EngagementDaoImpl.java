@@ -42,5 +42,14 @@ public class EngagementDaoImpl extends BaseDao implements EngagementDao {
 		getNamedParameterJdbcTemplate().update(sql, map);
 		
 	}
+	@Override
+	public List<Engagement> getEmployersEngaged(int studentId) {
+		
+			String sql = "SELECT student_id,employer_id,dateOfEngagement,interest "
+					+" FROM engagement WHERE student_id=?";
+			return getJdbcTemplate().query(sql, new EngagementRowMapper(),studentId);
+			
+ 
+	}
 
 }

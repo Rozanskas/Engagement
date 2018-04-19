@@ -13,12 +13,14 @@ public class MessageRowMapper implements RowMapper<Message>{
 	public Message mapRow(ResultSet rs, int i) throws SQLException {
 		Message message = new Message();
 		message.setId(rs.getInt("id"));
-		message.setStudentId(rs.getInt("receiver"));
-		message.setEmployerId(rs.getInt("sender"));
+		message.setStudentId(rs.getInt("studentId"));
+		message.setEmployerId(rs.getInt("employerId"));
 		message.setMessage(rs.getString("message"));
 		message.setDate(rs.getString("date"));
 		message.setHeader(rs.getString("header"));
 		message.setReceiverEmail(rs.getString("receiverEmail"));
+		message.setSenderEmail(rs.getString("senderEmail"));
+		
 		return message;
 	}
 

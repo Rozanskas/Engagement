@@ -24,29 +24,38 @@ public class MessageDaoImpl extends BaseDao implements MessageDao {
 
 	@Override
 	public List<Message> empGetMessages(Integer empId) {
-		String sql = "SELECT id,receiver ,sender, message,date, header,receiverEmail "
-				+" FROM message WHERE sender=?";	
+		String sql = "SELECT id,studentId ,employerId, message,date, header,receiverEmail,senderEmail "
+				+" FROM message WHERE employerId=?";	
 		List<Message> messages = getJdbcTemplate().query(sql, new MessageRowMapper(),empId);
 		return messages;
 	}
 
 	@Override
 	public void empSendMessage(Message message) {
-		String sql = "Insert into message(receiver,sender,message,date,header,receiverEmail )"
-				+ "VALUES (:receiver,:sender,:message,:date,:header,:receiverEmail )";
+		String sql = "Insert into message(studentId,employerId,message,date,header,receiverEmail,senderEmail )"
+				+ "VALUES (:studentId,:employerId,:message,:date,:header,:receiverEmail,:senderEmail )";
 		Map m = new HashMap();
-		m.put("receiver", message.getStudentId());
-		m.put("sender", message.getEmployerId());
+		m.put("studentId", message.getStudentId());
+		m.put("employerId", message.getEmployerId());
 		m.put("date", new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
 		m.put("message", message.getMessage());
 		m.put("header", message.getHeader());
 		m.put("receiverEmail", message.getReceiverEmail());
+		m.put("senderEmail", message.getSenderEmail());
 		KeyHolder kh = new GeneratedKeyHolder();
 		SqlParameterSource ps = new MapSqlParameterSource(m);
 		super.getNamedParameterJdbcTemplate().update(sql, ps,kh);
 		Integer id = kh.getKey().intValue();
 		message.setId(id);
 		
+	}
+
+	@Override
+	public List<Message> stGetMessages(Integer studentId) {
+		String sql = "SELECT id,studentId ,employerId, message,date, header,receiverEmail,senderEmail "
+				+" FROM message WHERE studentId=?";	
+		List<Message> messages = getJdbcTemplate().query(sql, new MessageRowMapper(),studentId);
+		return messages;
 	}
 
 	

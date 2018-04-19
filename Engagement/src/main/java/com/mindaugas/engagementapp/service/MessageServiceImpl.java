@@ -26,6 +26,11 @@ public class MessageServiceImpl implements MessageService {
 		
 	}
 
+	@Override
+	public List<Message> getMessagesSt(Integer studentId) {
+		return messageDao.stGetMessages(studentId);
+	}
+
 	
 	
 

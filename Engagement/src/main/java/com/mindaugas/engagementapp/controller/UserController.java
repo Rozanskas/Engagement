@@ -271,4 +271,32 @@ public class UserController {
 		model.addAttribute("success","Changes saved successfully");
 		return "updateEmpProfile";
 	}
+	
+	@RequestMapping(value = { "/student/engaging_employers" })
+	public String getEmployersInEngagement(HttpSession session,Model model) {
+		int studentId = (Integer) session.getAttribute("userId");
+		List<Engagement> engagements = engagementService.getEmployersEngaged(studentId);
+		List<User>employers=new ArrayList<>();
+		for(Engagement e: engagements){
+			User userId =userService.findById(e.getEmployerId());
+			employers.add(userId);
+		}
+		model.addAttribute("employers",employers);
+		return "employers_engaging";
+	}
+	
+	@RequestMapping(value = { "/student/e_profile" })
+	public String engagementProfile(@RequestParam("empId") Integer empId,HttpSession session,Model model) {
+		int studentId = (Integer) session.getAttribute("userId");
+		Engagement engagement = engagementService.getStudentEngagement(studentId, empId);
+		model.addAttribute("engagement",engagement);
+		return "st_e_profile";
+	}
+	
+	@RequestMapping(value = { "/about" })
+	public String about() {
+		return "about";
+	}
+		
+		
 }

@@ -13,7 +13,7 @@
 <spring:url var="url_jqlib" value="/resources/js/jquery-3.3.1.min.js" />
 <script src="${url_jqlib}"></script>
 
-<title>Employer Messages</title>
+<title>Student Messages</title>
 </head>
 <spring:url var="url_bg" value="/images/img01.jpg"></spring:url>
 

@@ -11,7 +11,7 @@ public interface EngagementService {
 	public Engagement getStudentEngagement(int studentId,int empId);
 
 	public void updateEngagement(Engagement engagement);
-	
+	public List<Engagement> getEmployersEngaged(int studentId);
 
 
 	

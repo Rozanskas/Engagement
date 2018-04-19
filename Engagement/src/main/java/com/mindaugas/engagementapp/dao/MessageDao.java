@@ -10,4 +10,5 @@ public interface MessageDao {
 
 	public List<Message> empGetMessages(Integer empId);
 	public void empSendMessage(Message message);
+	public List<Message> stGetMessages(Integer studentId);
 }
